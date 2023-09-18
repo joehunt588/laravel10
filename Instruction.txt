@@ -44,3 +44,29 @@ php artisan make:request UserCreateRequest
 
 #UserUpdateRequest
 php artisan make:request UserUpdateRequest
+
+#create new model
+create new migration role table
+php artisan make:migration create_roles_table
+#create permission table
+php artisan make:migration create_permissions_table
+
+#migrate or create new table 
+php artisan migrate
+
+
+#create model role
+php artisan make:model Role
+php artisan make:model Permission
+this will create a model table inside app-> models
+
+
+install new package laravel-ide-helper
+#https://github.com/barryvdh/laravel-ide-helper
+composer require --dev barryvdh/laravel-ide-helper
+run
+php artisan ide:generate
+# create model comments path for models
+php artisan ide:models
+
+#create new roles permission
