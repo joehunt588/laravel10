@@ -70,3 +70,5 @@ php artisan ide:generate
 php artisan ide:models
 
 #create new roles permission
+#git check origin 
+git remote show origin
