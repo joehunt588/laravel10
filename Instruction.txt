@@ -1,0 +1,46 @@
+composer create-project --prefer-dist laravel/laravel laravel-admin --ignore-platform-req=ext-fileinfo
+
+
+composer create-project --prefer-dist laravel/laravel <file name> --ignore-platform-req=ext-fileinfo
+
+php artisan serve
+
+migration
+database->migration
+create_user_table.php
+in docker-compose go to shell 
+docker-compose exec backend sh
+run after make changing on migrations-create user file
+php artisan migrate
+
+#if suddenly need to reconstruct new migration run this command on sh
+php artisan migrate:fresh --seed
+it will delete all data drop table n migrate new 
+
+#create controller from docker
+php artisan make:controller AuthController
+
+#create RegisterRequest for validations or create rule on request
+php artisan make:request RegisterRequest
+
+#postman header add 
+key: X-Requested-With
+value : XMLHttpRequest
+
+#to list all route
+#usefull is using Route::apiResource('users',UserController::class);
+#apiResource
+php artisan route:list
+
+
+#create seeder fake data 
+- modified useFactory
+- uncomment DatabaseSeeder
+run php artisan db:seed on sh 
+docker-compose exec backend sh
+
+#create UserCreateRequest
+php artisan make:request UserCreateRequest
+
+#UserUpdateRequest
+php artisan make:request UserUpdateRequest
