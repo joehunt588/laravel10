@@ -1,0 +1,30 @@
+composer create-project --prefer-dist laravel/laravel laravel-admin --ignore-platform-req=ext-fileinfo
+php artisan serve
+
+#to drop migration all db or change db use
+php artisan migrate:fresh <-- migrate all db
+php artisan migrate:refresh --path=database/migrations/2014_10_12_000000_create_users_table.php <--migrate certain table
+
+
+#custom request 
+#check validation for exception for login 
+
+#auth:sanctum
+//set cors to true for cookie in http
+//config -> cors
+//in order to ket child authentic must modified Authentic.php page
+//at Http->controller->Authcontroller.php
+//insert this code get from middleware
+//     public function handle($request, Closure $next, ...$guards)
+// {
+//     if($jwt= $request->cookie('jwt')){
+//         $request->headers->set('Authorization','Bearer '.$jwt);
+//     };
+//     $this->authenticate($request, $guards);
+
+//     return $next($request);
+// }
+
+
+create api 
+php artisan make:controller UserController --api
