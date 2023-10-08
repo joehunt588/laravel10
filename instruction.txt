@@ -1,0 +1,15 @@
+composer create-project --prefer-dist laravel/laravel <file name> --ignore-platform-req=ext-fileinfo
+
+php artisan serve
+php artisan route:list
+
+#create controller
+php artisan make:controller <controller name>
+
+#database migration
+php artisan migrate     
+#make change to database * not recommend if has data
+php artisan migrate:fresh
+#
+php artisan make:migration <name table>
+check on add_favorite-color migration example
