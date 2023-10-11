@@ -15,10 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [userController::class, 'showCorrectHomePage']);
-Route::post('/login', [userController::class, 'login']);
-Route::post('/register', [userController::class, 'register']);
-Route::post('/logout', [userController::class, 'logout']);
+Route::get('/', [userController::class, 'showCorrectHomePage'])->name('login');
+Route::post('/login', [userController::class, 'login'])->middleware('guest');
+Route::post('/register', [userController::class, 'register'])->middleware('guest');
+Route::post('/logout', [userController::class, 'logout'])->middleware('mustBeLoggedIn');
 
 //blog
-Route::get('/create-post', [PostController::class, 'showCreateForm']);
+Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('mustBeLoggedIn');
+Route::post('/create-post', [PostController::class, 'storeNewPost'])->middleware('mustBeLoggedIn');
+Route::get('/post/{postedid}', [PostController::class, 'viewSinglePost']);
+
+// Route::get('/', [userController::class, 'showCorrectHomePage'])->name('login')->middleware('custom_guest');
+// Route::post('/login', [userController::class, 'login'])->middleware('custom_guest');
+// Route::post('/register', [userController::class, 'register'])->middleware('custom_guest');
+// Route::post('/logout', [userController::class, 'logout'])->middleware('custom_auth');
+
+// // Blog
+// Route::middleware('custom_auth')->group(function () {
+//     Route::get('/create-post', [PostController::class, 'showCreateForm']);
+//     Route::post('/create-post', [PostController::class, 'storeNewPost']);
+// });
+
+// Route::get('/post/{postedid}', [PostController::class, 'viewSinglePost']);

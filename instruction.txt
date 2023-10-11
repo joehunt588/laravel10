@@ -13,3 +13,32 @@ php artisan migrate:fresh
 #
 php artisan make:migration <name table>
 check on add_favorite-color migration example
+#remove of down certain migration
+php artisan migrate:rollback --path=<path::>
+php artisan migrate:rollback --path=database/migrations/2023_10_07_162755_add_favorite_color_column.php
+
+
+#create Models
+ php artisan make:model Post
+
+ #to printout
+ // dd($request);
+// echo '<pre>';
+// echo json_encode($request->all(), JSON_PRETTY_PRINT); // Use echo to print the contents
+// echo '</pre>';
+// print_r($request);
+
+#create middleware example 
+php artisan make:middleware MustBeLoggedIn
+Route::get('/', [userController::class, 'showCorrectHomePage'])->name('login');
+Route::post('/login', [userController::class, 'login'])->middleware('guest');
+Route::post('/register', [userController::class, 'register'])->middleware('guest');
+Route::post('/logout', [userController::class, 'logout'])->middleware('auth');
+
+//blog
+Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('auth');
+Route::post('/create-post', [PostController::class, 'storeNewPost'])->middleware('auth');
+Route::get('/post/{postedid}', [PostController::class, 'viewSinglePost']);
+//below Http->kernel.php
+//kernel.php is middleware alias on bottom check this out
+after create php artisan make:middlerawe point it to kernel.php
